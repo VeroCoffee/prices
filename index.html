@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>لیست قیمت Vero Coffee - طراحی تیره و حرفه‌ای</title>
+  <style>
+    /* Reset and Base Styles */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    
+    :root {
+      --dark-bg: #1a1a1a;
+      --dark-surface: #2d2d2d;
+      --dark-card: #3a3a3a;
+      --text-primary: #ffffff;
+      --text-secondary: #b0b0b0;
+      --accent: #c9a96e;
+      --accent-light: #d4b88c;
+      --border: #404040;
+      --table-header: #2a2a2a;
+      --table-row-even: #252525;
+      --table-row-hover: #323232;
+    }
+    
+    body {
+      font-family: "Vazir", "Segoe UI", "Tahoma", sans-serif;
+      color: var(--text-primary);
+      background: var(--dark-bg);
+      line-height: 1.6;
+      font-size: 14px;
+      padding: 30px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+    
+    /* Dark Container */
+    .container {
+      width: 21cm;
+      min-height: 29.7cm;
+      background: var(--dark-surface);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      padding: 35px 45px;
+    }
+    
+    /* Compact English-style Header */
+    .compact-header {
+      padding: 0 0 20px 0;
+      margin-bottom: 20px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 15px;
+    }
+    
+    .bismillah {
+      font-size: 16px;
+      margin-right: 20px;
+      font-weight: 500;
+      color: var(--accent);
+      letter-spacing: 0.5px;
+    }
+    
+    .date-info {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .header-main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .logo-title {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    
+    .logo-space {
+      height: 115px;
+      width: 145px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      border: 1px solid var(--border);
+      padding: 5px;
+      background: var(--dark-card);
+      border-radius: 4px;
+    }
+    
+    .logo-space img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+    }
+    
+    .title-section {
+      text-align: right;
+      line-height: 15px;
+    }
+    
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      margin-bottom: 3px;
+      color: var(--text-primary);
+    }
+    
+    .subtitle {
+      font-size: 13px;
+      color: var(--text-secondary);
+    }
+    
+    .header-details {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-size: 13px;
+    }
+    
+    .detail-item {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+    }
+    
+    .detail-label {
+      color: var(--text-secondary);
+      font-size: 11px;
+      margin-bottom: 2px;
+    }
+    
+    .detail-value {
+      color: var(--text-primary);
+      font-weight: 500;
+    }
+    
+    /* Dark Table with English-style layout */
+    .table-container {
+      flex: 1;
+      margin: 10px 0;
+    }
+    
+    .table-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 15px;
+      text-align: center;
+      position: relative;
+      padding-bottom: 8px;
+    }
+    
+    .table-title::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 50%;
+      transform: translateX(50%);
+      width: 70px;
+      height: 2px;
+      background: var(--accent);
+    }
+    
+    .price-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--dark-card);
+      font-size: 13px;
+    }
+    
+    .price-table thead {
+      background: var(--table-header);
+    }
+    
+    .price-table th {
+      padding: 14px 12px;
+      text-align: center;
+      font-weight: 600;
+      color: var(--text-primary);
+      border-bottom: 2px solid var(--accent);
+    }
+    
+    .price-table th:first-child {
+      width: 50%;
+      text-align: right;
+      padding-right: 20px;
+    }
+    
+    .price-table th:nth-child(2),
+    .price-table th:nth-child(3) {
+      width: 25%;
+    }
+    
+    .price-table tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background-color 0.2s ease;
+    }
+    
+    .price-table tbody tr:nth-child(even) {
+      background: var(--table-row-even);
+    }
+    
+    .price-table tbody tr:hover {
+      background: var(--table-row-hover);
+    }
+    
+    .price-table tbody tr:last-child {
+      border-bottom: none;
+    }
+    
+    .price-table td {
+      padding: 12px 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    
+    .coffee-name {
+      text-align: right;
+      font-weight: 500;
+      color: var(--text-primary);
+      padding-right: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+    }
+    
+    .price-cell {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+    
+    .wholesale-cell {
+      font-weight: 600;
+      color: var(--accent);
+    }
+    
+    .type-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 2px 8px;
+      border-radius: 10px;
+      font-size: 10px;
+      font-weight: 500;
+      margin-right: 8px;
+    }
+    
+    .arabica-badge {
+      background: rgba(201, 169, 110, 0.15);
+      color: var(--accent-light);
+    }
+    
+    .robusta-badge {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text-secondary);
+    }
+    
+    /* Compact English-style Footer */
+    .compact-footer {
+      padding: 15px 0 0 0;
+      margin-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+    }
+    
+    .copyright {
+      font-size: 12px;
+      color: var(--text-secondary);
+    }
+    
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      align-items: flex-end;
+    }
+    
+    .contact-item {
+      font-size: 12px;
+      color: var(--text-primary);
+      direction: ltr;
+      text-align: left;
+    }
+    
+    .address {
+      font-size: 12px;
+      color: var(--text-secondary);
+      text-align: center;
+      padding-top: 8px;
+      border-top: 1px solid var(--border);
+      margin-top: 8px;
+    }
+    
+    /* Print Styles */
+    @media print {
+      body {
+        padding: 0;
+        background: var(--dark-bg);
+        display: block;
+      }
+      
+      .container {
+        width: 100%;
+        min-height: auto;
+        padding: 1.5cm;
+        box-shadow: none;
+      }
+    }
+    
+    /* Subtle decorative elements */
+    .corner {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--accent);
+      opacity: 0.3;
+    }
+    
+    .corner-tl {
+      top: 15px;
+      right: 15px;
+      border-bottom: none;
+      border-left: none;
+    }
+    
+    .corner-tr {
+      top: 15px;
+      left: 15px;
+      border-bottom: none;
+      border-right: none;
+    }
+    
+    .corner-bl {
+      bottom: 15px;
+      right: 15px;
+      border-top: none;
+      border-left: none;
+    }
+    
+    .corner-br {
+      bottom: 15px;
+      left: 15px;
+      border-top: none;
+      border-right: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="corner corner-tl"></div>
+    <div class="corner corner-tr"></div>
+    <div class="corner corner-bl"></div>
+    <div class="corner corner-br"></div>
+    
+    <!-- Compact English-style Header -->
+    <div class="compact-header">
+      <div class="header-top">
+        <div class="bismillah">✦ به نام خدا ✦</div>
+        <div class="date-info" id="current-date">تاریخ بروزرسانی: در حال بارگذاری...</div>
+      </div>
+      
+      <div class="header-main">
+        <div class="logo-title">
+          <div class="logo-space">
+            <img src="IMG_20250922_112947_753_5-removebg-preview (1).png" alt="Vero Coffee Logo">
+          </div>
+          
+          <div class="title-section">
+            <div class="title">Vero Coffee</div>
+            <div class="subtitle">رایحه‌ قهوه</div>
+          </div>
+        </div>
+        
+        <div class="header-details">
+          <div class="detail-item">
+            <span class="detail-label">وضعیت موجودی</span>
+            <span class="detail-value">همه محصولات موجود</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dark Table -->
+    <div class="table-container">
+      <div class="table-title">لیست قهوه‌های تک دان</div>
+      
+      <table class="price-table">
+        <thead>
+          <tr>
+            <th>نام محصول</th>
+            <th>قیمت (هزار تومان)</th>
+            <th>قیمت ۵ + ۱ کیلو</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="coffee-name">ویتنام رست Medium to dark <span class="type-badge robusta-badge">روبوستا</span></td>
+            <td class="price-cell">۱,۱۸۵</td>
+            <td class="price-cell wholesale-cell">۹۸۷</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">چری AA رست Medium <span class="type-badge robusta-badge">روبوستا</span></td>
+            <td class="price-cell">۱,۳۱۵</td>
+            <td class="price-cell wholesale-cell">۱,۰۹۵</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">PB هند رست medium <span class="type-badge robusta-badge">روبوستا</span></td>
+            <td class="price-cell">۱,۳۱۵</td>
+            <td class="price-cell wholesale-cell">۱,۰۹۵</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">اندونزی رست Medium to dark <span class="type-badge robusta-badge">روبوستا</span></td>
+            <td class="price-cell">۱,۳۱۵</td>
+            <td class="price-cell wholesale-cell">۱,۰۹۵</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">اوگاندا رست Medium <span class="type-badge robusta-badge">روبوستا</span></td>
+            <td class="price-cell">۱,۳۱۵</td>
+            <td class="price-cell wholesale-cell">۱,۰۹۵</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">کلمبیا رست Medium <span class="type-badge arabica-badge">عربیکا</span></td>
+            <td class="price-cell">۲,۱۲۵</td>
+            <td class="price-cell wholesale-cell">۱,۷۷۰</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">اتیوپی لکمپتی رست Medium <span class="type-badge arabica-badge">عربیکا</span></td>
+            <td class="price-cell">۱,۵۴۵</td>
+            <td class="price-cell wholesale-cell">۱,۲۸۷</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">برزیل سانتوس رست Medium <span class="type-badge arabica-badge">عربیکا</span></td>
+            <td class="price-cell">۱,۶۵۸</td>
+            <td class="price-cell wholesale-cell">۱,۳۷۹</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">کنیا رست Medium <span class="type-badge arabica-badge">عربیکا</span></td>
+            <td class="price-cell">۱,۶۵۸</td>
+            <td class="price-cell wholesale-cell">۱,۳۷۹</td>
+          </tr>
+          <tr>
+            <td class="coffee-name">برزیل ریو AA رست Medium <span class="type-badge arabica-badge">عربیکا</span></td>
+            <td class="price-cell">۱,۴۱۰</td>
+            <td class="price-cell wholesale-cell">۱,۱۷۵</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- جداکننده صفحات برای چاپ -->
+<div class="page-break" style="page-break-after: always; break-after: page; margin: 20px 0; text-align: center; padding: 15px 0;">
+  <div style="display: inline-flex; align-items: center; gap: 10px; color: var(--accent); opacity: 0.7;">
+    <span style="font-size: 12px;">✦ Vero Coffee ✦</span>
+  </div>
+</div>
+
+    <!-- جدول میکس‌های قهوه -->
+<div class="table-container" style="margin-top: 40px;">
+  <div class="table-title">لیست میکس‌‌های تخصصی</div>
+  
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>ترکیب محصول</th>
+        <th>قیمت (هزار تومان)</th>
+        <th>قیمت ۵ + ۱ کیلو</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="coffee-name">
+          میکس ۱۰/۹۰ 
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 40px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 4px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۹۰% | عربیکا ۱۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۳۷۰</td>
+        <td class="price-cell wholesale-cell">۱,۱۳۷</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">
+          میکس ۲۰/۸۰
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 32px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 8px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۸۰% | عربیکا ۲۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۴۱۵</td>
+        <td class="price-cell wholesale-cell">۱,۱۷۵</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">
+          میکس ۳۰/۷۰
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 28px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 12px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۷۰% | عربیکا ۳۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۴۵۵</td>
+        <td class="price-cell wholesale-cell">۱,۲۱۰</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">
+          میکس ۴۰/۶۰
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 24px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 16px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۶۰% | عربیکا ۴۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۴۹۵</td>
+        <td class="price-cell wholesale-cell">۱,۲۴۵</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">
+          میکس ۵۰/۵۰
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 20px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 20px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۵۰% | عربیکا ۵۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۵۳۶</td>
+        <td class="price-cell wholesale-cell">۱,۲۸۰</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">
+          میکس ۶۰/۴۰
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 16px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 24px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۴۰% | عربیکا ۶۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۵۷۶</td>
+        <td class="price-cell wholesale-cell">۱,۳۱۳</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">
+          میکس ۷۰/۳۰
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 12px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 28px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۳۰% | عربیکا ۷۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۶۱۷</td>
+        <td class="price-cell wholesale-cell">۱,۳۴۸</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">
+          میکس ۸۰/۲۰
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 8px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 32px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۲۰% | عربیکا ۸۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۶۵۹</td>
+        <td class="price-cell wholesale-cell">۱,۳۸۲</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">
+          میکس ۹۰/۱۰
+          <div style="display: inline-flex; align-items: center; margin-right: 10px;">
+            <span style="width: 4px; height: 8px; background: #b0b0b0; display: inline-block; margin-left: 3px;"></span>
+            <span style="width: 36px; height: 8px; background: #c9a96e; display: inline-block;"></span>
+            <span style="font-size: 10px; color: #b0b0b0; margin-right: 5px;">روبوستا ۱۰% | عربیکا ۹۰%</span>
+          </div>
+        </td>
+        <td class="price-cell">۱,۶۹۷</td>
+        <td class="price-cell wholesale-cell">۱,۴۱۳</td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- جداکننده صفحات برای چاپ -->
+<div class="page-break" style="page-break-after: always; break-after: page; margin: 20px 0; text-align: center; padding: 15px 0;">
+  <div style="display: inline-flex; align-items: center; gap: 10px; color: var(--accent); opacity: 0.7;">
+    <span style="font-size: 12px;">✦ Vero Coffee ✦</span>
+  </div>
+</div>
+
+
+
+<!-- جدول قهوه‌های تک‌دانه (سبز) -->
+<div class="table-container" style="margin-top: 40px;">
+  <div class="table-title">لیست قهوه‌های تک‌دانه (سبز)</div>
+  
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>نام محصول</th>
+        <th>قیمت (تومان)</th>
+        <th>نوع</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- ربوستا -->
+      <tr>
+        <td class="coffee-name">چری A<span class="type-badge robusta-badge">روبوستا</span></td>
+        <td class="price-cell">۸۳۵</td>
+        <td class="price-cell">-</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">پی بی هند<span class="type-badge robusta-badge">روبوستا</span></td>
+        <td class="price-cell">۸۳۵</td>
+        <td class="price-cell">-</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">اندونزی Java EK1<span class="type-badge robusta-badge">روبوستا</span></td>
+        <td class="price-cell">۸۳۵</td>
+        <td class="price-cell">گرید ۱</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">اندونزی جاوا WIB<span class="type-badge robusta-badge">روبوستا</span></td>
+        <td class="price-cell">۸۷۷</td>
+        <td class="price-cell">-</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">اوگاندا<span class="type-badge robusta-badge">روبوستا</span></td>
+        <td class="price-cell">۸۰۵</td>
+        <td class="price-cell">SC 18</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">تانزانیا<span class="type-badge robusta-badge">روبوستا</span></td>
+        <td class="price-cell">۸۸۷</td>
+        <td class="price-cell">SC 18 UNWASHED</td>
+      </tr>
+
+      <!-- عربیکا -->
+      <tr>
+        <td class="coffee-name">کنیا AM<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۱,۰۵۵</td>
+        <td class="price-cell">-</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">کنیا AA<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۱,۱۷۷</td>
+        <td class="price-cell">-</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">کنیا ML<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۸۳۵</td>
+        <td class="price-cell">-</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">کاستاریکا<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۱,۱۳۵</td>
+        <td class="price-cell">-</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">گواتمالا<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۱,۲۰۵</td>
+        <td class="price-cell">مارک ColoCoff</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">کلمبیا سوپریمو<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۱,۲۵۷</td>
+        <td class="price-cell">sc 17</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">کلمبیا سوپریمو<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۱,۲۸۷</td>
+        <td class="price-cell">SC 18</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">برزیل ریو<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۹۴۷</td>
+        <td class="price-cell">SC 19</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">برزیل ریو<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۸۸۷</td>
+        <td class="price-cell">SC 17/18</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">Sidamo اتیوپی<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۱,۱۹۵</td>
+        <td class="price-cell">گرید ۲ Washed</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">اتیوپی لکمپتی<span class="type-badge arabica-badge">عربیکا</span></td>
+        <td class="price-cell">۸۸۷</td>
+        <td class="price-cell">گرید ۵</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- جداکننده صفحات برای چاپ -->
+<div class="page-break" style="page-break-after: always; break-after: page; margin: 20px 0; text-align: center; padding: 15px 0;">
+  <div style="display: inline-flex; align-items: center; gap: 10px; color: var(--accent); opacity: 0.7;">
+    <span style="font-size: 12px;">✦ Vero Coffee ✦</span>
+  </div>
+</div>
+
+
+<!-- جدول پودریجات -->
+<div class="table-container" style="margin-top: 40px;">
+  <div class="table-title">لیست پودریجات</div>
+  
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>نام محصول</th>
+        <th>قیمت (تومان)</th>
+        <th>توضیحات</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="coffee-name">کافی میکس ۱*۲</td>
+        <td class="price-cell">۶۷۰</td>
+        <td class="price-cell">مخلوط آماده ۲ در ۱</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">کاپوچینو</td>
+        <td class="price-cell">۶۷۰</td>
+        <td class="price-cell">طعم کلاسیک ایتالیایی</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">چای ماسالا</td>
+        <td class="price-cell">۶۷۰</td>
+        <td class="price-cell">ادویه‌های هندی</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">هات‌چاکلت</td>
+        <td class="price-cell">۷۱۰</td>
+        <td class="price-cell">کاکائو با کیفیت</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">چای ماسالا رژیمی</td>
+        <td class="price-cell">۷۷۰</td>
+        <td class="price-cell">فاقد شکر افزوده</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">چای کرک</td>
+        <td class="price-cell">۸۴۵</td>
+        <td class="price-cell">طعم خاص کرک</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">اسپرسو فوری</td>
+        <td class="price-cell">۱,۵۷۵</td>
+        <td class="price-cell">اسپرسو سریع</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">گلد هند</td>
+        <td class="price-cell">۱,۵۷۵</td>
+        <td class="price-cell">طعم ملایم و گردویی</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">گلد برزیل</td>
+        <td class="price-cell">۱,۷۷۰</td>
+        <td class="price-cell">طعم شکلاتی و کاراملی</td>
+      </tr>
+      <tr>
+        <td class="coffee-name">گلد اکوادور</td>
+        <td class="price-cell">۲,۰۵۰</td>
+        <td class="price-cell">گرید پریمیوم</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<!-- جداکننده صفحات برای چاپ -->
+<div class="page-break" style=" margin: 20px 0; text-align: center; padding: 15px 0;">
+  <div style="display: inline-flex; align-items: center; gap: 10px; color: var(--accent); opacity: 0.7;">
+    <span style="font-size: 12px;">✦ Vero Coffee ✦</span>
+  </div>
+</div>
+
+</div>
+    <!-- Compact English-style Footer -->
+    <div class="compact-footer">
+      <div class="footer-content">
+        <div class="copyright">© ۱۴۰۳ Vero Coffee. کلیه حقوق محفوظ است.</div>
+        
+        <div class="contact-info">
+          <div class="contact-item">021-22097341</div>
+          <div class="contact-item">021-22097352</div>
+          <div class="contact-item">09190210367</div>
+        </div>
+      </div>
+      
+      <div class="address">
+        آدرس: خیابان ولی‌عصر، قبل از خیابان مطهری، کوچه حسینی راد، پلاک ۳۹
+      </div>
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/persian-date@latest/dist/persian-date.min.js"></script>
+  <script>
+    // نمایش تاریخ فعلی با کتابخانه PersianDate
+    document.addEventListener('DOMContentLoaded', function() {
+      const today = new persianDate();
+      
+      const weekday = today.format('dddd'); // نام روز هفته
+      const day = today.format('D'); // روز ماه
+      const month = today.format('MMMM'); // نام ماه
+      const year = today.format('YYYY'); // سال
+      
+      const dateElement = document.getElementById('current-date');
+      dateElement.textContent = `تاریخ بروزرسانی: ${weekday} ${day} ${month} ${year}`;
+    });
+  </script>
+</body>
+</html>
